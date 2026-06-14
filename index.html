@@ -1,0 +1,596 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="e-Auction - The premier platform for competitive online bidding">
+    <meta name="keywords" content="auction, bidding, online auction, collectibles, antiques">
+    <title> 🏛️ e-Auction</title>
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <div class="logo" id="logo-home-btn"><i class="fas fa-landmark"></i> e-Auction</div>
+        <div class="header-right">
+            <button id="themeToggle" class="theme-toggle hover-grow" aria-label="Toggle dark mode">
+                <i class="fas fa-moon"></i>
+            </button>
+            <div id="auth-buttons" class="auth-buttons">
+                <button id="header-login" class="btn btn-primary hover-grow">Login</button>
+                <button id="header-register" class="btn btn-secondary hover-grow">Sign Up</button>
+            </div>
+            <div id="user-info" class="user-info hidden">
+                <span>Welcome </span>
+                <span id="username-display"></span>
+                <button id="header-logout" class="btn btn-danger hover-grow">Logout</button>
+            </div>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="video-background">
+            <video autoplay muted loop id="hero-video">
+                <source src="background video.mp4" type="video/mp4">
+            </video>
+            <div class="video-overlay"></div>
+        </div>
+        <div class="hero-content">
+            <h1 data-aos="fade-down" data-aos-duration="800" style="color: aliceblue;">Welcome to e-Auction</h1>
+            <p data-aos="fade-up" data-aos-delay="200" data-aos-duration="800">The premier platform for competitive online bidding</p>
+            <button class="btn btn-gradient pulse-animate" data-aos="zoom-in" data-aos-delay="400" id="hero-cta">Start Bidding</button>
+        </div>
+    </section>
+
+    <main>
+        <section id="home-content" class="page active">
+            <div class="live-auctions-preview">
+                <div class="section-header">
+                    <h2 class="section-title">Trending Now ⚡</h2>
+                    <button id="view-all-auctions" class="btn btn-gradient hover-grow">View All Auctions</button>
+                </div>
+                <div id="home-auctions-list" class="grid-container">
+                    </div>
+            </div><br>
+
+            <div class="about-platform">
+                <h2 class="section-title">Why Choose e-Auction?</h2>
+                <div class="about-grid">
+                    <div class="about-card" data-aos="fade-up">
+                        <div class="about-icon"><i class="fas fa-bolt"></i></div>
+                        <h3>Real-Time Bidding</h3>
+                        <p>Experience the thrill of live auctions with our real-time bidding system.</p>
+                    </div>
+                    <div class="about-card" data-aos="fade-up" data-aos-delay="100">
+                        <div class="about-icon"><i class="fas fa-shield-alt"></i></div>
+                        <h3>Secure Transactions</h3>
+                        <p>Bank-level encryption protects all transactions.</p>
+                    </div>
+                    <div class="about-card" data-aos="fade-up" data-aos-delay="200">
+                        <div class="about-icon"><i class="fas fa-chart-line"></i></div>
+                        <h3>Smart Pricing</h3>
+                        <p>Our algorithm helps you bid smarter with price suggestions.</p>
+                    </div>
+                    <div class="about-card" data-aos="fade-up">
+                        <div class="about-icon"><i class="fas fa-globe"></i></div>
+                        <h3>Global Marketplace</h3>
+                        <p>Access unique items from around the world.</p>
+                    </div>
+                    <div class="about-card" data-aos="fade-up" data-aos-delay="100">
+                        <div class="about-icon"><i class="fas fa-mobile-alt"></i></div>
+                        <h3>Mobile Friendly</h3>
+                        <p>Bid on-the-go with our fully responsive platform.</p>
+                    </div>
+                    <div class="about-card" data-aos="fade-up" data-aos-delay="200">
+                        <div class="about-icon"><i class="fas fa-headset"></i></div>
+                        <h3>24/7 Support</h3>
+                        <p>Our dedicated support team is available around the clock.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div id="main-app" class="hidden">
+            <nav id="main-nav">
+                <div>
+                    <a href="#" id="nav-live" class="nav-link active hover-underline">Live Auctions</a>
+                    <a href="#" id="nav-create" class="nav-link hover-underline">Create Auction</a>
+                    <a href="#" id="nav-deposit" class="nav-link hover-underline">Deposit</a>
+                    <a href="#" id="nav-history" class="nav-link hover-underline">History</a>
+                    <a href="#" id="nav-profile" class="nav-link hover-underline">Profile</a>
+                </div>
+                <div class="nav-right">
+                    <span class="balance">Balance: ₹ <span id="user-balance">1000</span></span>
+                </div>
+            </nav>
+
+            <section id="live-section" class="page">
+                <div id="auctions-list" class="grid-container">
+                    </div>
+            </section>
+
+            <section id="create-section" class="page">
+                <h2 class="section-title">Create New Auction</h2>
+                <form id="create-auction-form" class="form-card glass">
+                    <label for="item-name">Item Name:</label>
+                    <input type="text" id="item-name" required aria-required="true">
+                    
+                    <label for="item-description">Description:</label>
+                    <textarea id="item-description" required aria-required="true"></textarea>
+                    
+                    <label for="item-category">Category:</label>
+                    <select id="item-category" required aria-required="true">
+                        <option value="">Select a category</option>
+                        <option value="electronics">Electronics</option>
+                        <option value="collectibles">Collectibles</option>
+                        <option value="antiques">Antiques</option>
+                        <option value="art">Art</option>
+                        <option value="fashion">Fashion</option>
+                    </select>
+                    
+                    <label for="item-images" class="custom-file-upload btn btn-secondary hover-grow">
+                        <i class="fas fa-cloud-upload-alt"></i> Choose Files (2-5 images)
+                    </label>
+                    <input type="file" id="item-images" class="hidden" accept="image/*" multiple aria-label="Upload item images">
+                    <div class="image-error" id="image-error">Please upload between 2 and 5 images</div>
+                    <div class="image-upload-container" id="image-preview-container">
+                        </div>
+                    
+                    <label for="start-price">Starting Price (RS):</label>
+                    <input type="number" id="start-price" min="1" required aria-required="true">
+                    
+                    <label>Auction Duration:</label>
+                    <div class="duration-inputs">
+                        <div class="duration-group">
+                            <label for="duration-days">Days</label>
+                            <input type="number" id="duration-days" min="0" value="0">
+                        </div>
+                        <div class="duration-group">
+                            <label for="duration-hours">Hours</label>
+                            <input type="number" id="duration-hours" min="0" max="23" value="0">
+                        </div>
+                        <div class="duration-group">
+                            <label for="duration-minutes">Minutes</label>
+                            <input type="number" id="duration-minutes" min="1" value="30">
+                        </div>
+                    </div>
+                    
+                    <input type="submit" value="Create Auction" class="btn btn-gradient">
+                    <div id="create-auction-loader" class="loader hidden"></div>
+                </form>
+            </section>
+
+            <section id="deposit-section" class="page">
+                <h2 class="section-title">Deposit Money</h2>
+                <form id="deposit-form" class="form-card glass">
+                    <label for="deposit-amount">Amount (RS):</label>
+                    <input type="number" id="deposit-amount" min="1" required aria-required="true">
+                    <input type="submit" value="Deposit" class="btn btn-gradient">
+                    <div id="deposit-loader" class="loader hidden"></div>
+                </form>
+            </section>
+
+            <section id="history-section" class="page">
+                <h2 class="section-title">Your History</h2>
+                <div id="history-list" class="history-container glass">
+                    </div>
+            </section>
+
+            <section id="profile-section" class="page">
+                <h2 class="section-title">Your Profile</h2>
+                <div class="profile-container glass">
+                    <div class="profile-header">
+                        <div class="profile-avatar">
+                            <i class="fas fa-user-circle"></i>
+                        </div>
+                        <div class="profile-info">
+                            <h3 id="profile-username"></h3>
+                            <p>Member since <span id="member-since"></span></p>
+                        </div>
+                    </div>
+                    
+                    <div class="profile-details">
+                        <div class="detail-item">
+                            <span class="detail-label">Full Name:</span>
+                            <span id="profile-full-name" class="detail-value"></span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-label">Email:</span>
+                            <span id="profile-email" class="detail-value"></span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-label">Phone:</span>
+                            <span id="profile-phone" class="detail-value"></span>
+                        </div>
+                    </div>
+                    <div class="profile-stats">
+                        <div class="stat-card">
+                            <h4>Balance</h4>
+                            <p id="user-balance-profile-stat">0</p>
+                        </div>
+                        <div class="stat-card">
+                            <h4>Total Bids</h4>
+                            <p id="total-bids">0</p>
+                        </div>
+                        <div class="stat-card">
+                            <h4>Auctions Created</h4>
+                            <p id="auctions-created">0</p>
+                        </div>
+                        <div class="stat-card">
+                            <h4>Auctions Won</h4>
+                            <p id="auctions-won">0</p>
+                        </div>
+                        <div class="stat-card">
+                            <h4>Auctions Sold</h4>
+                            <p id="auctions-sold">0</p>
+                        </div>
+                        <div class="stat-card">
+                            <h4>Auctions Unsold</h4>
+                            <p id="auctions-unsold">0</p>
+                        </div>
+                    </div>
+                    <div class="profile-actions">
+                        <button id="edit-profile-btn" class="btn btn-primary">Edit Profile</button>
+                        <button id="change-password-btn" class="btn btn-secondary">Change Password</button>
+                    </div>
+                </div>
+            </section>
+
+            <section id="auction-detail-section" class="page">
+                <div id="auction-detail-container" class="glass">
+                    </div>
+                <button id="back-to-auctions" class="btn btn-secondary" style="margin-top: 20px;">
+                    <i class="fas fa-arrow-left"></i> Back to Auctions
+                </button>
+            </section>
+        </div>
+    </main>
+
+    <div id="edit-profile-modal" class="modal hidden">
+        <div class="modal-content glass">
+            <span class="close-modal" aria-label="Close modal">&times;</span>
+            <h2>Edit Profile</h2>
+            <form id="edit-profile-form" class="auth-form">
+                <label for="edit-full-name">Full Name:</label>
+                <input type="text" id="edit-full-name">
+                
+                <label for="edit-email">Email:</label>
+                <input type="email" id="edit-email">
+                
+                <label for="edit-phone">Phone:</label>
+                <input type="tel" id="edit-phone">
+                
+                <input type="submit" value="Save Changes" class="btn btn-gradient">
+            </form>
+        </div>
+    </div>
+
+    <div id="auth-modal" class="modal hidden">
+        <div class="modal-content glass">
+            <span class="close-modal" aria-label="Close modal">&times;</span>
+            <div class="tab-links">
+                <button id="login-tab" class="active hover-underline">Login</button>
+                <button id="register-tab" class="hover-underline">Create Account</button>
+            </div>
+            <div id="login-form-container">
+                <form id="login-form" class="auth-form">
+                    <label for="username">Username:</label>
+                    <input type="text" id="username" required aria-required="true">
+                    
+                    <label for="password">Password:</label>
+                    <input type="password" id="password" required aria-required="true">
+                    
+                    <input type="submit" value="Login" class="btn btn-gradient">
+                    <p>Demo account: <strong>admin</strong> / <strong>admin</strong></p>
+                </form>
+            </div>
+            <div id="register-form-container" class="hidden">
+                <form id="register-form" class="auth-form">
+                    <label for="full-name">Full Name:</label>
+                    <input type="text" id="full-name" required aria-required="true">
+                    
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" required aria-required="true">
+                    
+                    <label for="phone">Phone:</label>
+                    <input type="text" id="phone" maxlength="10" inputmode="numeric" required oninput="this.value = this.value.replace(/[^0-9]/g, '')">
+
+                    
+                    <label for="new-username">Username:</label>
+                    <input type="text" id="new-username" required aria-required="true">
+                    <div id="username-error" class="error-message hidden"></div>
+                    
+                    <label for="new-password">Password:</label>
+                    <input type="password" id="new-password" required aria-required="true">
+                    <p class="password-hint">Password must be at least 8 characters long and contain at least one letter and one symbol.</p>
+                    
+                    <label for="confirm-password">Confirm Password:</label>
+                    <input type="password" id="confirm-password" required aria-required="true">
+                    
+                    <input type="submit" value="Create Account" class="btn btn-gradient">
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div id="change-password-modal" class="modal hidden">
+        <div class="modal-content glass">
+            <span class="close-modal" aria-label="Close modal">&times;</span>
+            <h2>Change Password</h2>
+            <form id="change-password-form" class="auth-form">
+                <label for="current-password">Current Password:</label>
+                <input type="password" id="current-password" required aria-required="true">
+                
+                <label for="change-new-password">New Password:</label>
+                <input type="password" id="change-new-password" required aria-required="true">
+                <p class="password-hint">Password must be at least 8 characters long and contain at least one letter and one symbol.</p>
+
+                <label for="change-confirm-new-password">Confirm New Password:</label>
+                <input type="password" id="change-confirm-new-password" required aria-required="true">
+                
+                <input type="submit" value="Change Password" class="btn btn-gradient">
+            </form>
+        </div>
+    </div>
+
+    <div id="payment-modal" class="modal hidden">
+        <div class="modal-content glass">
+            <span class="close-modal" aria-label="Close modal">&times;</span>
+            <h2>Deposit Money</h2>
+            <form id="payment-form" class="auth-form">
+                <label for="deposit-full-name">Full Name:</label>
+                <input type="text" id="deposit-full-name" required aria-required="true">
+                
+                <label for="deposit-phone">Phone Number:</label>
+                <input type="tel" id="deposit-phone" required aria-required="true">
+                
+                <label for="payment-method">Payment Method:</label>
+                <select id="payment-method" required aria-required="true">
+                    <option value="">Select a payment method</option>
+                    <option value="upi">UPI</option>
+                    <option value="card">Credit/Debit Card</option>
+                    <option value="netbanking">Net Banking</option>
+                </select>
+                
+                <div id="upi-fields" class="payment-fields hidden">
+                    <label for="upi-id">UPI ID:</label>
+                    <input type="text" id="upi-id" placeholder="example@upi">
+                    <p class="payment-hint">Enter a valid UPI ID (e.g. name@bank)</p>
+                </div>
+                
+                <div id="card-fields" class="payment-fields hidden">
+                    <label for="card-number">Card Number:</label>
+                    <input type="text" id="card-number" placeholder="1234 5678 9012 3456">
+                    
+                    <div class="card-details">
+                        <div>
+                            <label for="card-expiry">Expiry Date:</label>
+                            <input type="text" id="card-expiry" placeholder="MM/YY" maxlength="5">
+                        </div>
+                        <div>
+                            <label for="card-cvv">CVV:</label>
+                            <input type="text" id="card-cvv" placeholder="123" maxlength="3">
+                        </div>
+                    </div>
+                    
+                    <label for="card-name">Name on Card:</label>
+                    <input type="text" id="card-name">
+                </div>
+                
+                <div id="netbanking-fields" class="payment-fields hidden">
+                    <label for="bank-select">Select Bank:</label>
+                    <select id="bank-select">
+                        <option value="">Select your bank</option>
+                        <option value="sbi">State Bank of India</option>
+                        <option value="hdfc">HDFC Bank</option>
+                        <option value="icici">ICICI Bank</option>
+                        <option value="axis">Axis Bank</option>
+                        <option value="other">Other Bank</option>
+                    </select>
+                    
+                    <label for="netbanking-userid">User ID:</label>
+                    <input type="text" id="netbanking-userid">
+                    
+                    <label for="netbanking-password">Password:</label>
+                    <input type="password" id="netbanking-password">
+                </div>
+                
+                <input type="submit" value="Complete Payment" class="btn btn-gradient">
+            </form>
+        </div>
+    </div>
+
+    <button id="back-to-top" class="back-to-top hidden" aria-label="Back to top">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>e-Auction</h3>
+                <p>The best platform for online auctions</p>
+            </div>
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="#" class="footer-link hover-underline" onclick="showAboutModal()">About Us</a></li>
+                    <li><a href="#" class="footer-link hover-underline" onclick="showTermsModal()">Terms of Service</a></li>
+                    <li><a href="#" class="footer-link hover-underline" onclick="showPrivacyModal()">Privacy Policy</a></li>
+                    <li><a href="#" class="footer-link hover-underline" onclick="showHelpModal()">Help Center</a></li>
+                    <li><a href="#" class="footer-link hover-underline" onclick="showContactModal()">Contact Us</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Contact</h3>
+                <p><a href="mailto:someone@example.com">Email: info@e_auction.com</a></p>
+                <p>Phone: +91 9998887771</p>
+                <p><a href="https://www.instagram.com/e_auction_platform/?utm_source=ig_web_button_share_sheet" target="_blank">Instagram: @e_auction_platform</a></p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 e-Auction. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <div id="about-modal" class="modal hidden">
+        <div class="modal-content glass">
+            <span class="close-modal" aria-label="Close modal">&times;</span>
+            <h2>About e-Auction</h2>
+            <p>e-Auction is a premier online bidding platform that connects buyers and sellers from around the world.</p>
+        </div>
+    </div>
+
+    <div id="terms-modal" class="modal hidden">
+        <div class="modal-content glass">
+            <span class="close-modal" aria-label="Close modal">&times;</span>
+            <h2>Terms of Service</h2>
+            <div class="modal-scroll-content">
+                <h3>1. General Terms</h3>
+                <p>By accessing and using e-Auction, you accept and agree to be bound by these Terms of Service.</p>
+                <h3>2. User Accounts</h3>
+                <p>You must be at least 18 years old to create an account.</p>
+                <h3>3. Bidding and Buying</h3>
+                <p>All bids are binding. By placing a bid, you enter into a legally binding contract.</p>
+            </div>
+        </div>
+    </div>
+
+    <div id="privacy-modal" class="modal hidden">
+        <div class="modal-content glass">
+            <span class="close-modal" aria-label="Close modal">&times;</span>
+            <h2>Privacy Policy</h2>
+            <div class="modal-scroll-content">
+                <h3>1. Information We Collect</h3>
+                <p>We collect personal information you provide, including name, email, address, and payment details.</p>
+                <h3>2. How We Use Information</h3>
+                <p>Your information is used to provide services, process transactions, and improve our platform.</p>
+                <h3>3. Data Security</h3>
+                <p>We implement a variety of security measures to maintain the safety of your personal information. These include using secure servers, encrypting data, and regular security audits.</p>
+                <h3>4. Cookies</h3>
+                <p>We use cookies to enhance your experience on our site. These small files are stored on your device to remember your preferences and settings, which helps us provide a more personalized service. You can choose to disable cookies in your browser settings, but please note that this may affect the functionality of some parts of our website.</p>
+                <h3>5. Third-Party Disclosure</h3>
+                <p>We do not sell, trade, or otherwise transfer your personally identifiable information to outside parties. This does not include trusted third parties who assist us in operating our website, conducting our business, or servicing you, as long as those parties agree to keep this information confidential.</p>
+                <h3>6. Changes to this Policy</h3>
+                <p>We may update this privacy policy from time to time. We will notify you of any changes by posting the new policy on this page. We encourage you to review this policy periodically for any updates.</p>
+            </div>
+        </div>
+    </div>
+
+    <div id="help-modal" class="modal hidden">
+        <div class="modal-content glass">
+            <span class="close-modal" aria-label="Close modal">&times;</span>
+            <h2>Help Center</h2>
+            <div class="modal-scroll-content">
+                <div class="faq-section">
+                    <h3>Getting Started</h3>
+                    <div class="faq-item">
+                        <h4>How do I create an account?</h4>
+                        <p>Click on the "Sign Up" button in the top right corner and follow the on-screen instructions.</p>
+                    </div>
+                    <div class="faq-item">
+                        <h4>How do I place a bid?</h4>
+                        <p>To place a bid, you must be logged in. Navigate to an auction item, enter your bid amount, and click "Place Bid." Ensure your balance is sufficient to cover the bid amount.</p>
+                    </div>
+                    <div class="faq-item">
+                        <h4>What happens if I'm outbid?</h4>
+                        <p>If another user places a higher bid, your previous bid amount is immediately refunded to your account balance. You will receive a notification and can choose to place a new, higher bid.</p>
+                    </div>
+                    <div class="faq-item">
+                        <h4>How can I deposit money?</h4>
+                        <p>Go to the "Deposit" page from the main navigation menu. Enter the amount you wish to deposit and select your preferred payment method (UPI, Card, or Net Banking) to complete the transaction.</p>
+                    </div>
+                    <h3>Technical Support</h3>
+                    <div class="faq-item">
+                        <h4>My balance isn't updating. What should I do?</h4>
+                        <p>If your balance doesn't reflect a recent transaction, please try refreshing the page. If the issue persists, contact our support team with your transaction details.</p>
+                    </div>
+                    <div class="faq-item">
+                        <h4>I can't log in. What's wrong?</h4>
+                        <p>First, double-check your username and password for typos. If you still can't log in, you may need to reset your password. If the problem continues, our support team can assist you.</p>
+                    </div>
+                </div>
+                <div class="contact-support">
+                    <h3>Still need help?</h3>
+                    <p>Contact our support team 24/7 through the <a href="#" onclick="showContactModal()">Contact Us</a> form.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="contact-modal" class="modal hidden">
+        <div class="modal-content glass contact-modal-content-grid">
+            <span class="close-modal" aria-label="Close modal">&times;</span>
+            <div class="contact-form-container">
+                <h2>Contact Us</h2>
+                <p class="contact-intro">We're here to help! Please fill out the form below with your inquiry, and our support team will get back to you within 24 hours.</p>
+                <form id="contact-form">
+                    <div class="form-group">
+                        <label for="contact-name">Your Name</label>
+                        <input type="text" id="contact-name" required aria-required="true">
+                    </div>
+                    <div class="form-group">
+                        <label for="contact-email">Email Address</label>
+                        <input type="email" id="contact-email" required aria-required="true">
+                    </div>
+                    <div class="form-group">
+                        <label for="contact-subject">Subject</label>
+                        <select id="contact-subject" required aria-required="true">
+                            <option value="">Select a subject</option>
+                            <option value="general">General Inquiry</option>
+                            <option value="technical">Technical Support</option>
+                            <option value="billing">Billing & Payments</option>
+                            <option value="report">Report an Issue</option>
+                            <option value="feedback">Feedback</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="contact-message">Message</label>
+                        <textarea id="contact-message" required aria-required="true" rows="5"></textarea>
+                    </div>
+                    <div class="form-submit">
+                        <input type="submit" value="Send Message" class="btn btn-primary">
+                    </div>
+                </form>
+            </div>
+            <div class="contact-info-container">
+                <h2>Reach Us Directly</h2>
+                <div class="contact-info-item">
+                    <i class="fas fa-envelope"></i>
+                    <div>
+                        <h3>Email</h3>
+                        <p><a href="mailto:support@e_auction.com">support@e_auction.com</a></p>
+                    </div>
+                </div>
+                <div class="contact-info-item">
+                    <i class="fas fa-phone"></i>
+                    <div>
+                        <h3>Phone</h3>
+                        <p>+91 9998887771</p>
+                    </div>
+                </div>
+                <div class="contact-info-item">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <div>
+                        <h3>Address</h3>
+                        <p>Bengaluru,560035</p>
+                    </div>
+                </div>
+                <div class="social-links">
+                    <h3>Follow Us</h3>
+                    <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                    <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

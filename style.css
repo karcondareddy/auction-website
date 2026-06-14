@@ -1,0 +1,2105 @@
+/* ============================================= */
+/* ============ ROOT VARIABLES ================ */
+/* ============================================= */
+
+/* Light theme color variables */
+:root {
+    --primary-color: #4361ee;
+    --secondary-color: #3f37c9;
+    --accent-color: #4cc9f0;
+    --danger-color: #f72585;
+    --success-color: #4ad66d;
+    --warning-color: #ffbe0b;
+    --text-primary: #2b2d42;
+    --text-secondary: #8d99ae;
+    --bg-primary: #f0f4f8; /* Lighter, more modern background */
+    --bg-secondary: #ffffff;
+    --bg-tertiary: #e9ecef;
+    --shadow-color: rgba(0, 0, 0, 0.1);
+    --glass-bg: rgba(255, 255, 255, 0.5); /* Semi-transparent for better glass effect */
+    --glass-border: rgba(255, 255, 255, 0.7);
+    --glass-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.1);
+    --scrollbar-thumb: #007bff;
+    --scrollbar-track: #e0e0e0;
+}
+
+/* Dark theme color variables */
+[data-theme="dark"] {
+    --primary-color: #4895ef;
+    --secondary-color: #4361ee;
+    --accent-color: #4cc9f0;
+    --danger-color: #f72585;
+    --success-color: #4ad66d;
+    --warning-color: #ffbe0b;
+    --text-primary: #f8f9fa;
+    --text-secondary: #adb5bd;
+    --bg-primary: #121212;
+    --bg-secondary: #1e1e1e;
+    --bg-tertiary: #2d2d2d;
+    --shadow-color: rgba(0, 0, 0, 0.4);
+    --glass-bg: rgba(30, 30, 30, 0.7); /* Darker, more pronounced glass effect */
+    --glass-border: rgba(255, 255, 255, 0.1);
+    --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.5);
+    --scrollbar-thumb: #339af0;
+    --scrollbar-track: #2c2f33;
+}
+
+/* ============================================= */
+/* ============ BASE STYLES =================== */
+/* ============================================= */
+
+/* Reset and base styles */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Body styles */
+body {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+    line-height: 1.6;
+    transition: background-color 0.3s ease;
+}
+
+/* ============================================= */
+/* ============ SCROLLBAR STYLES ============== */
+/* ============================================= */
+
+/* Custom scrollbar for WebKit browsers */
+::-webkit-scrollbar {
+    width: 11px;
+    height: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--scrollbar-track);
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: var(--scrollbar-thumb);
+    border-radius: 10px;
+    border: 2px solid transparent;
+    background-clip: content-box;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--primary-color);
+}
+
+/* ============================================= */
+/* ============ TYPOGRAPHY ==================== */
+/* ============================================= */
+
+/* Heading styles */
+h1, h2, h3, h4, h5, h6 {
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+/* Paragraph styles */
+p {
+    color: var(--text-secondary);
+    font-weight: 300;
+}
+
+/* ============================================= */
+/* ============ HEADER STYLES ================= */
+/* ============================================= */
+
+/* Main header styles */
+header {
+    background-color: var(--bg-secondary);
+    color: var(--text-primary);
+    padding: 15px 5%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 2px 10px var(--shadow-color);
+}
+
+/* Logo styles */
+.logo {
+    font-size: 1.5rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    cursor: pointer;
+}
+
+.logo i {
+    margin-right: 8px;
+}
+
+/* Header right section styles */
+.header-right {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+/* Theme toggle button styles */
+.theme-toggle {
+    background: none;
+    border: none;
+    color: var(--text-primary);
+    font-size: 1.2rem;
+    cursor: pointer;
+    padding: 8px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Auth buttons container */
+.auth-buttons {
+    display: flex;
+    gap: 10px;
+}
+
+/* User info display styles */
+.user-info {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+#username-display {
+    font-weight: 500;
+}
+
+/* Utility class for hiding elements */
+.hidden {
+    display: none !important;
+}
+
+/* ============================================= */
+/* ============ BUTTON STYLES ================= */
+/* ============================================= */
+
+/* Base button styles */
+.btn {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 8px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    font-size: 0.9rem;
+}
+
+/* Primary button variant */
+.btn-primary {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+/* Secondary button variant */
+.btn-secondary {
+    background-color: var(--bg-tertiary);
+    color: var(--text-primary);
+}
+
+/* Danger button variant */
+.btn-danger {
+    background-color: var(--danger-color);
+    color: white;
+}
+
+/* Gradient button variant */
+.btn-gradient {
+    background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+    color: white;
+    box-shadow: 0 4px 15px rgba(67, 97, 238, 0.3);
+}
+
+/* Button hover effects */
+.btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px var(--shadow-color);
+}
+
+.btn:active {
+    transform: translateY(0);
+}
+
+/* Auth form submit button */
+.auth-form input[type="submit"] {
+    background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 8px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 1rem;
+    box-shadow: 0 4px 15px rgba(67, 97, 238, 0.3);
+    margin-top: 10px;
+}
+
+.auth-form input[type="submit"]:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px var(--shadow-color);
+}
+
+/* Bid button styles */
+.bid-button {
+    background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    font-size: 0.9rem;
+    box-shadow: 0 4px 15px rgba(67, 97, 238, 0.3);
+    width: 100%;
+}
+
+.bid-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px var(--shadow-color);
+}
+
+.bid-button:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+    background: var(--bg-tertiary);
+    color: var(--text-secondary);
+    box-shadow: none;
+}
+
+/* ============================================= */
+/* ============ ANIMATIONS ==================== */
+/* ============================================= */
+
+/* Hover grow effect */
+.hover-grow {
+    transition: transform 0.3s ease;
+}
+
+.hover-grow:hover {
+    transform: scale(1.05);
+}
+
+/* Hover underline effect */
+.hover-underline {
+    position: relative;
+}
+
+.hover-underline::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: -2px;
+    left: 0;
+    background-color: var(--primary-color);
+    transition: width 0.3s ease;
+}
+
+.hover-underline:hover::after {
+    width: 100%;
+}
+
+/* Pulsing animation */
+.pulse-animate {
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
+
+/* ============================================= */
+/* ============ GLASS MORPHISM ================ */
+/* ============================================= */
+
+/* Glass effect styling */
+.glass {
+    background: var(--glass-bg);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid var(--glass-border);
+    box-shadow: var(--glass-shadow);
+    border-radius: 12px;
+}
+
+/* ============================================= */
+/* ============ HERO SECTION ================== */
+/* ============================================= */
+
+/* Hero section container */
+.hero {
+    position: relative;
+    height: 80vh;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    margin-bottom: 30px;
+}
+
+/* Video background container */
+.video-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    z-index: -1;
+}
+
+/* Video element styling */
+.video-background video {
+    min-width: 100%;
+    min-height: 100%;
+    object-fit: cover;
+}
+
+/* Video overlay for better text contrast */
+.video-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 1;
+}
+
+/* Hero content container */
+.hero-content {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    padding: 0 20px;
+    max-width: 800px;
+    margin: 0 auto;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Hero heading styles */
+.hero-content h1 {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+}
+
+/* Hero paragraph styles */
+.hero-content p {
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+    color: rgba(255,255,255,0.9);
+}
+
+/* ============================================= */
+/* ============ MAIN CONTENT ================== */
+/* ============================================= */
+
+/* Main content container */
+main {
+    flex: 1;
+    padding: 2rem 5%;
+    max-width: 1400px;
+    margin: 0 auto;
+    width: 100%;
+}
+
+/* Page container styles */
+.page {
+    display: none;
+}
+
+.page.active {
+    display: block;
+}
+
+/* Section title styles */
+.section-title {
+    text-align: center;
+    margin-bottom: 2.5rem;
+    position: relative;
+    font-size: 2rem;
+}
+
+.section-title::after {
+    content: '';
+    position: absolute;
+    width: 80px;
+    height: 4px;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
+    border-radius: 2px;
+}
+
+/* ============================================= */
+/* ============ GRID LAYOUT =================== */
+/* ============================================= */
+
+/* Grid container for responsive layouts */
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+}
+
+/* ============================================= */
+/* ============ AUCTION ITEMS ================= */
+/* ============================================= */
+
+/* Auction item card styles */
+.auction-item {
+    background: var(--bg-secondary);
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 10px 20px var(--shadow-color);
+    transition: all 0.3s ease;
+    position: relative;
+    display: flex; /* Use flexbox to organize content */
+    flex-direction: column; /* Stack content vertically */
+}
+
+.auction-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px var(--shadow-color);
+}
+
+.auction-item:hover .gallery-main-image {
+    transform: scale(1.05);
+}
+
+.auction-content {
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1; /* Allow content to grow to fill space */
+}
+
+.auction-content h3 {
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+}
+
+.auction-content p {
+    margin-bottom: 1rem;
+    font-size: 0.9rem;
+    flex-grow: 1; /* Make descriptions grow to push buttons down */
+}
+
+.auction-item .bid-form {
+    margin-top: auto; /* Push bid form to the bottom */
+}
+
+.auction-item .btn-secondary {
+    margin-top: 1rem; /* Add consistent spacing for view details button */
+}
+
+/* ============================================= */
+/* ============ ABOUT PLATFORM CARDS ========== */
+/* ============================================= */
+
+/* About platform card styles */
+.about-card {
+    background: var(--bg-secondary);
+    border-radius: 12px;
+    padding: 2rem;
+    box-shadow: 8px 8px 16px rgba(0,0,0,0.1),
+                -8px -8px 16px rgba(255,255,255,0.1);
+    transition: all 0.3s ease;
+}
+
+.about-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 12px 12px 24px rgba(0,0,0,0.15),
+                -12px -12px 24px rgba(255,255,255,0.1);
+}
+
+/* About card icon styles */
+.about-icon {
+    width: 60px;
+    height: 60px;
+    margin: 0 auto 1.5rem;
+    background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+    color: white;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    box-shadow: 5px 5px 10px rgba(0,0,0,0.1),
+                -5px -5px 10px rgba(255,255,255,0.1);
+}
+
+/* About grid layout */
+.about-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+}
+
+/* ============================================= */
+/* ============ MODAL STYLES ================== */
+/* ============================================= */
+
+/* Modal overlay styles */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.7);
+    backdrop-filter: blur(5px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow-y: auto;
+}
+
+/* Modal content container */
+.modal-content {
+    background: var(--bg-secondary);
+    border-radius: 12px;
+    padding: 2rem;
+    width: 90%;
+    max-width: 500px;
+    position: relative;
+    animation: modalFadeIn 0.3s ease;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+    max-height: 90vh;
+    overflow-y: auto;
+}
+
+/* Modal fade-in animation */
+@keyframes modalFadeIn {
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Modal close button */
+.close-modal {
+    position: absolute;
+    right: 1.5rem;
+    top: 1rem;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: var(--text-secondary);
+    transition: all 0.2s ease;
+}
+
+.close-modal:hover {
+    color: var(--primary-color);
+    transform: rotate(90deg);
+}
+
+/* Tab links container */
+.tab-links {
+    display: flex;
+    margin-bottom: 1.5rem;
+    border-bottom: 1px solid var(--bg-tertiary);
+}
+
+/* Tab link buttons */
+.tab-links button {
+    background: none;
+    border: none;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    color: var(--text-secondary);
+    font-weight: 500;
+    position: relative;
+}
+
+/* Active tab styles */
+.tab-links button.active {
+    color: var(--primary-color);
+}
+
+.tab-links button.active::after {
+    content: '';
+    position: absolute;
+    bottom: -1px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: var(--primary-color);
+}
+
+/* ============================================= */
+/* ============ FORM STYLES =================== */
+/* ============================================= */
+
+/* Auth form container */
+.auth-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+/* Form label styles */
+.auth-form label {
+    font-weight: 500;
+    color: var(--text-primary);
+}
+
+/* Form input styles */
+.auth-form input {
+    width: 100%;
+    padding: 12px 15px;
+    margin-bottom: 1rem;
+    border: 1px solid var(--bg-tertiary);
+    border-radius: 8px;
+    background: var(--bg-secondary);
+    color: var(--text-primary);
+    font-family: 'Poppins', sans-serif;
+}
+
+.auth-form input:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 2px rgba(67, 97, 238, 0.2);
+}
+
+/* Password hint text */
+.password-hint {
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+    margin-top: -0.5rem;
+    margin-bottom: 1rem;
+}
+
+/* Error message styles */
+.error-message {
+    color: var(--danger-color);
+    font-size: 0.8rem;
+    margin-top: -0.5rem;
+    margin-bottom: 0.5rem;
+}
+
+/* Form card container */
+.form-card {
+    background: var(--bg-secondary);
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 10px 20px var(--shadow-color);
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+/* Form input elements */
+input, textarea, select {
+    width: 100%;
+    padding: 12px 15px;
+    margin: 5px 0 15px;
+    border: 1px solid var(--bg-tertiary);
+    border-radius: 8px;
+    background: var(--bg-secondary);
+    color: var(--text-primary);
+    font-family: 'Poppins', sans-serif;
+    transition: all 0.3s ease;
+}
+
+input:focus, textarea:focus, select:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 2px rgba(67, 97, 238, 0.2);
+}
+
+/* ============================================= */
+/* ============ MAIN APP NAVIGATION =========== */
+/* ============================================= */
+
+/* Main navigation container */
+#main-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--bg-tertiary);
+}
+
+/* Navigation link styles */
+.nav-link {
+    color: var(--text-secondary);
+    text-decoration: none;
+    margin-right: 1.5rem;
+    font-weight: 500;
+    position: relative;
+    padding-bottom: 5px;
+}
+
+/* Active navigation link */
+.nav-link.active {
+    color: var(--primary-color);
+}
+
+.nav-link.active::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: var(--primary-color);
+}
+
+/* Navigation right section */
+.nav-right {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+/* Balance display styles */
+.balance {
+    font-weight: 500;
+    color: var(--text-primary);
+}
+
+/* ============================================= */
+/* ============ FOOTER STYLES ================= */
+/* ============================================= */
+
+/* Footer container */
+footer {
+    background: var(--bg-secondary);
+    color: var(--text-primary);
+    padding: 3rem 5% 0;
+    margin-top: 3rem;
+}
+
+/* Footer content grid */
+.footer-content {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Footer section styles */
+.footer-section h3 {
+    margin-bottom: 1.5rem;
+    position: relative;
+    padding-bottom: 0.5rem;
+}
+
+.footer-section h3::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 50px;
+    height: 3px;
+    background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
+}
+
+.footer-section ul {
+    list-style: none;
+}
+
+.footer-section li {
+    margin-bottom: 0.5rem;
+}
+
+.footer-section a {
+    color: var(--text-secondary);
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.footer-section a:hover {
+    color: var(--primary-color);
+    padding-left: 5px;
+}
+
+/* Footer bottom section */
+.footer-bottom {
+    text-align: center;
+    padding: 1.5rem;
+    margin-top: 2rem;
+    border-top: 1px solid var(--bg-tertiary);
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+}
+
+/* ============================================= */
+/* ============ AUCTION GALLERY =============== */
+/* ============================================= */
+
+/* Gallery container styles */
+.gallery-container {
+    position: relative;
+    width: 100%;
+    padding-top: 56.25%; /* 16:9 Aspect Ratio */
+    overflow: hidden;
+    border-radius: 12px 12px 0 0;
+}
+
+.gallery-main-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: opacity 0.5s ease;
+}
+
+/* ============================================= */
+/* ============ FULLSCREEN GALLERY ============ */
+/* ============================================= */
+
+/* Fullscreen overlay styles */
+.fullscreen-overlay {
+    position: fixed;
+    z-index: 9999;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.9);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease;
+}
+
+.fullscreen-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* Fullscreen image styles */
+.fullscreen-image {
+    max-width: 90%;
+    max-height: 90%;
+    object-fit: contain;
+    transition: opacity 0.3s ease;
+}
+
+/* Fullscreen close button */
+.fullscreen-close {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: none;
+    border: none;
+    color: white;
+    font-size: 2em;
+    cursor: pointer;
+}
+
+/* Fullscreen navigation buttons */
+.fullscreen-nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(255,255,255,0.2);
+    color: white;
+    border: none;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5em;
+    z-index: 1000;
+    transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.fullscreen-nav:hover {
+    background-color: rgba(255,255,255,0.4);
+    transform: translateY(-50%) scale(1.1);
+}
+
+.fullscreen-prev {
+    left: 20px;
+}
+
+.fullscreen-next {
+    right: 20px;
+}
+
+/* Fullscreen counter */
+.fullscreen-counter {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: white;
+    font-size: 1.2em;
+}
+
+/* ============================================= */
+/* ============ IMAGE UPLOAD PREVIEW ========== */
+/* ============================================= */
+
+/* Image preview container */
+.image-preview-container {
+    position: relative;
+    display: inline-block;
+    margin: 5px;
+}
+
+/* Auction image preview */
+.auction-image-preview {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 5px;
+}
+
+/* Remove image button */
+.remove-image {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    background-color: #f72585;
+    color: white;
+    border: none;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 0.8em;
+}
+
+/* Image error message */
+.image-error {
+    color: var(--danger-color);
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
+    display: none;
+}
+
+/* File input button style */
+.custom-file-upload {
+    background-color: var(--bg-tertiary);
+    color: var(--text-primary);
+    border: none;
+    border-radius: 8px;
+    padding: 10px 20px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    font-size: 0.9rem;
+    box-shadow: 0 4px 15px var(--shadow-color);
+    width: auto;
+}
+
+.custom-file-upload:hover {
+    background-color: var(--accent-color);
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px var(--shadow-color);
+}
+
+/* ============================================= */
+/* ============ STATUS BADGES ================= */
+/* ============================================= */
+
+/* Sold out badge */
+.sold-out-badge {
+    background-color: #f72585;
+    color: white;
+    padding: 3px 8px;
+    border-radius: 4px;
+    font-size: 0.8em;
+    margin-left: 10px;
+}
+
+/* Unsold badge */
+.unsold-badge {
+    background-color: #6c757d;
+    color: white;
+    padding: 3px 8px;
+    border-radius: 4px;
+    font-size: 0.8em;
+    margin-left: 10px;
+}
+
+/* ============================================= */
+/* ============ NOTIFICATION STYLES =========== */
+/* ============================================= */
+
+/* Notification container */
+.notification {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #28a745;
+    color: white;
+    padding: 15px 25px;
+    border-radius: 5px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.notification i {
+    font-size: 1.2em;
+}
+
+/* No auctions message */
+.no-auctions {
+    text-align: center;
+    color: #6c757d;
+    font-style: italic;
+    grid-column: 1 / -1;
+}
+
+/* ============================================= */
+/* ============ RESPONSIVE ADJUSTMENTS ======== */
+/* ============================================= */
+
+/* Medium screens (tablets) */
+@media (max-width: 768px) {
+    .hero-content h1 {
+        font-size: 2.2rem;
+    }
+    
+    .hero-content p {
+        font-size: 1rem;
+    }
+    
+    .section-title {
+        font-size: 1.5rem;
+    }
+    
+    .grid-container {
+        grid-template-columns: 1fr;
+    }
+    
+    .header-right {
+        gap: 10px;
+    }
+
+    #main-nav {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem;
+    }
+
+    .nav-right {
+        width: 100%;
+        justify-content: space-between;
+    }
+    
+    .contact-modal-content-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Small screens (mobile) */
+@media (max-width: 480px) {
+    header {
+        flex-direction: column;
+        gap: 15px;
+        padding: 15px;
+    }
+    
+    .auth-buttons {
+        width: 100%;
+        justify-content: center;
+    }
+    
+    .modal-content {
+        padding: 1.5rem;
+    }
+
+    .about-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* ============================================= */
+/* ============ LIVE AUCTIONS PREVIEW ========= */
+/* ============================================= */
+
+/* Live auctions preview section header */
+.live-auctions-preview .section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.live-auctions-preview .section-title {
+    margin-bottom: 0;
+}
+
+.live-auctions-preview .section-title::after {
+    display: none;
+}
+
+/* View all container */
+.view-all-container {
+    text-align: center;
+    margin-top: 2rem;
+}
+
+@media (max-width: 768px) {
+    .live-auctions-preview .section-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem;
+    }
+    
+    #view-all-auctions {
+        width: 100%;
+    }
+}
+
+/* ============================================= */
+/* ============ ENHANCED HISTORY SECTION ====== */
+/* ============================================= */
+
+/* History container */
+.history-container {
+    padding: 2rem;
+    margin-top: 2rem;
+}
+
+/* History item styles */
+.history-item {
+    background: var(--bg-secondary);
+    border-radius: 12px;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+    box-shadow: 0 5px 15px var(--shadow-color);
+    transition: all 0.3s ease;
+}
+
+.history-item:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px var(--shadow-color);
+}
+
+.history-item p {
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
+    color: var(--text-primary);
+}
+
+.history-item small {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.history-item hr {
+    border: none;
+    height: 1px;
+    background: var(--bg-tertiary);
+    margin: 1rem 0 0;
+}
+
+.history-item i {
+    color: var(--primary-color);
+}
+
+/* No history message */
+.no-history {
+    text-align: center;
+    padding: 3rem;
+    font-size: 1.1rem;
+    color: var(--text-secondary);
+}
+
+/* Status indicators */
+.history-bid {
+    border-left: 4px solid var(--primary-color);
+}
+
+.history-sale {
+    border-left: 4px solid var(--success-color);
+}
+
+/* ============================================= */
+/* ============ CATEGORY BADGES =============== */
+/* ============================================= */
+
+/* Category tabs container */
+.category-tabs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 20px;
+    justify-content: center;
+}
+
+/* Category tab buttons */
+.category-tab {
+    padding: 10px 20px;
+    background: var(--bg-tertiary);
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    color: var(--text-primary);
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+/* Active category tab */
+.category-tab.active {
+    background: var(--primary-color);
+    color: white;
+}
+.category-tab:hover {
+    background: var(--accent-color);
+    color: white;
+}
+
+/* Category badges */
+.category-badge {
+    display: inline-block;
+    padding: 3px 8px;
+    border-radius: 4px;
+    font-size: 0.8em;
+    margin-left: 10px;
+    background-color: var(--primary-color);
+    color: white;
+}
+
+.badge-electronics {
+    background-color: #4361ee;
+}
+
+.badge-collectibles {
+    background-color: #7209b7;
+}
+
+.badge-antiques {
+    background-color: #f8961e;
+}
+
+.badge-art {
+    background-color: #f94144;
+}
+
+.badge-jewelry {
+    background-color: #43aa8b;
+}
+
+@media (max-width: 768px) {
+    .auction-categories {
+        gap: 8px;
+    }
+    
+    .category-btn {
+        padding: 6px 12px;
+        font-size: 0.8rem;
+    }
+}
+
+/* ============================================= */
+/* ============ HOME AUCTIONS LIST ============ */
+/* ============================================= */
+
+/* Home page auctions list gallery */
+.home-auctions-list .gallery-container {
+    position: relative;
+    height: 200px; /* Fixed height for home page */
+    overflow: hidden;
+}
+
+.home-auctions-list .gallery-main-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    cursor: zoom-in;
+    transition: transform 0.5s ease;
+}
+
+.home-auctions-list .auction-item:hover .gallery-main-image {
+    transform: scale(1.05);
+}
+
+/* ============================================= */
+/* ============ ENHANCED AUCTION DETAIL ======= */
+/* ============================================= */
+
+/* Auction detail container */
+.auction-detail-container {
+    background: var(--bg-secondary);
+    border-radius: 12px;
+    padding: 2rem;
+    box-shadow: 0 10px 20px var(--shadow-color);
+    margin-bottom: 2rem;
+}
+
+/* Auction detail header */
+.auction-detail-header {
+    margin-bottom: 2rem;
+    text-align: center;
+}
+
+.auction-detail-header h2 {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+    color: var(--text-primary);
+}
+
+/* Auction category badge */
+.auction-category {
+    display: inline-block;
+    background: var(--accent-color);
+    color: white;
+    padding: 5px 15px;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    text-transform: uppercase;
+}
+
+/* Auction time display */
+.auction-time {
+    font-size: 1rem;
+    color: var(--text-secondary);
+    margin-bottom: 1.5rem;
+}
+
+/* Auction detail content layout */
+.auction-detail-content {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+}
+
+@media (min-width: 992px) {
+    .auction-detail-content {
+        grid-template-columns: 2fr 1fr;
+    }
+}
+
+/* Auction gallery styles */
+.auction-gallery {
+    margin-bottom: 2rem;
+}
+
+.gallery-main-container {
+    position: relative;
+    height: 400px;
+    overflow: hidden;
+    border-radius: 12px;
+    margin-bottom: 1rem;
+}
+
+.gallery-main-image {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    cursor: zoom-in;
+    background-color: var(--bg-tertiary);
+    border-radius: 8px;
+    transition: opacity 0.3s ease-in-out;
+}
+
+/* Gallery thumbnails */
+.gallery-thumbnails {
+    display: flex;
+    gap: 10px;
+    overflow-x: auto;
+    padding: 10px 0;
+}
+
+.gallery-thumbnail {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    border-radius: 8px;
+    cursor: pointer;
+    border: 2px solid transparent;
+    transition: all 0.3s ease;
+}
+
+.gallery-thumbnail.active {
+    border-color: var(--primary-color);
+}
+
+.gallery-thumbnail:hover {
+    opacity: 0.8;
+}
+
+/* Auction description */
+.auction-description {
+    background: var(--bg-tertiary);
+    padding: 1.5rem;
+    border-radius: 12px;
+    margin-bottom: 2rem;
+}
+
+.auction-description h3 {
+    margin-bottom: 1rem;
+    color: var(--text-primary);
+}
+
+.auction-description p {
+    color: var(--text-secondary);
+    line-height: 1.7;
+}
+
+/* Auction bid info */
+.auction-bid-info {
+    background: var(--bg-tertiary);
+    padding: 1.5rem;
+    border-radius: 12px;
+    margin-bottom: 2rem;
+}
+
+.current-bid, .highest-bidder {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+    align-items: center;
+}
+
+.current-bid span:first-child,
+.highest-bidder span:first-child {
+    font-weight: 500;
+    color: var(--text-primary);
+}
+
+/* ============================================= */
+/* ============ AUCTION DETAIL BID FORM ======= */
+/* ============================================= */
+
+/* Bid section error messages */
+.bid-section .error-message {
+    margin-top: 0.5rem;
+    margin-bottom: 0;
+    font-size: 0.85rem;
+    padding: 0.5rem;
+    background-color: rgba(247, 37, 133, 0.1);
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.bid-section .error-message i {
+    font-size: 1rem;
+}
+
+/* Bid form styles */
+.bid-form {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.bid-form .form-group {
+    margin-bottom: 0;
+}
+
+.bid-form input {
+    margin-bottom: 0 !important;
+}
+
+/* Bid amount display */
+.bid-amount {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--primary-color);
+}
+
+/* Bid section container */
+.bid-section {
+    background: var(--bg-tertiary);
+    padding: 1.5rem;
+    border-radius: 12px;
+    margin-top: 2rem;
+}
+
+.bid-section h3 {
+    margin-bottom: 1rem;
+    color: var(--text-primary);
+}
+
+/* Auction status indicators */
+.auction-status {
+    text-align: center;
+    padding: 2rem;
+    border-radius: 12px;
+    margin-top: 2rem;
+}
+
+.auction-status.sold {
+    background-color: rgba(40, 167, 69, 0.1);
+    border: 1px solid var(--success-color);
+}
+
+.auction-status.unsold {
+    background-color: rgba(108, 117, 125, 0.1);
+    border: 1px solid var(--text-secondary);
+}
+
+.auction-status i {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+}
+
+.auction-status h3 {
+    margin-bottom: 0.5rem;
+    color: var(--text-primary);
+}
+
+.auction-status p {
+    color: var(--text-secondary);
+}
+
+.auction-status.sold i {
+    color: var(--success-color);
+}
+
+.auction-status.unsold i {
+    color: var(--text-secondary);
+}
+
+/* ============================================= */
+/* ============ CONTACT FORM STYLES =========== */
+/* ============================================= */
+
+/* Contact modal styles */
+#contact-modal .modal-content {
+    max-width: 800px;
+}
+
+.contact-modal-content-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 2rem;
+}
+
+.contact-form-container {
+    padding-right: 1.5rem;
+    border-right: 1px solid var(--bg-tertiary);
+}
+
+.contact-info-container {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.contact-info-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.contact-info-item i {
+    font-size: 1.5rem;
+    color: var(--primary-color);
+}
+
+.contact-info-item h3 {
+    margin: 0;
+    color: var(--text-primary);
+}
+
+.contact-info-item p {
+    margin: 0;
+    font-size: 0.9rem;
+}
+
+.social-links a {
+    color: var(--text-secondary);
+    font-size: 1.5rem;
+    margin-right: 1rem;
+    transition: color 0.3s ease;
+}
+
+.social-links a:hover {
+    color: var(--primary-color);
+}
+
+.contact-intro {
+    font-size: 1.1rem;
+    margin-bottom: 1.5rem;
+    color: var(--text-secondary);
+}
+
+/* Contact form layout */
+#contact-form {
+    display: grid;
+    gap: 1rem;
+    padding: 0;
+}
+
+#contact-form .form-group {
+    margin-bottom: 0;
+}
+
+/* Contact form labels */
+#contact-form label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+    color: var(--text-primary);
+    font-size: 0.9rem;
+}
+
+/* Contact form inputs */
+#contact-form input,
+#contact-form select,
+#contact-form textarea {
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid var(--bg-tertiary);
+    border-radius: 8px;
+    background: var(--bg-secondary);
+    color: var(--text-primary);
+    font-family: 'Poppins', sans-serif;
+    transition: all 0.3s ease;
+}
+
+#contact-form input:focus,
+#contact-form select:focus,
+#contact-form textarea:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 2px rgba(67, 97, 238, 0.2);
+}
+
+/* Contact form textarea */
+#contact-form textarea {
+    min-height: 150px;
+    resize: vertical;
+}
+
+/* Contact form submit section */
+#contact-form .form-submit {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 1rem;
+}
+
+/* Contact form submit button */
+#contact-form input[type="submit"] {
+    background: var(--primary-color);
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 8px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    width: auto;
+}
+
+#contact-form input[type="submit"]:hover {
+    background: var(--secondary-color);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+/* ============================================= */
+/* ============ MODAL SCROLL CONTENT ========== */
+/* ============================================= */
+
+/* Scrollable modal content */
+.modal-scroll-content {
+    max-height: 60vh;
+    overflow-y: auto;
+    padding-right: 1rem;
+}
+
+/* ============================================= */
+/* ============ FAQ SECTION =================== */
+/* ============================================= */
+
+/* FAQ section container */
+.faq-section {
+    margin-bottom: 2rem;
+}
+
+/* FAQ item styles */
+.faq-item {
+    margin-bottom: 1.5rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid var(--bg-tertiary);
+}
+
+.faq-item h4 {
+    color: var(--primary-color);
+    margin-bottom: 0.5rem;
+}
+
+.faq-item p {
+    color: var(--text-secondary);
+    line-height: 1.7;
+}
+
+/* Contact support section */
+.contact-support {
+    margin-top: 3rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--bg-tertiary);
+    text-align: center;
+}
+
+/* ============================================= */
+/* ============ BACK TO TOP BUTTON ============ */
+/* ============================================= */
+
+/* Back to top button */
+.back-to-top {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: var(--primary-color);
+    color: white;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+    transition: all 0.3s ease;
+    z-index: 999;
+    opacity: 0;
+    visibility: hidden;
+}
+
+.back-to-top.visible {
+    opacity: 1;
+    visibility: visible;
+}
+
+.back-to-top:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    background: var(--secondary-color);
+}
+
+/* ============================================= */
+/* ============ PROFILE SECTION =============== */
+/* ============================================= */
+
+/* Profile container */
+.profile-container {
+    background: var(--bg-secondary);
+    border-radius: 12px;
+    padding: 2rem;
+    box-shadow: 0 10px 20px var(--shadow-color);
+}
+
+/* Profile header */
+.profile-header {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+/* Profile avatar */
+.profile-avatar {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background: var(--bg-tertiary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2.5rem;
+    color: var(--primary-color);
+}
+
+/* Profile info */
+.profile-info h3 {
+    margin-bottom: 0.5rem;
+    color: var(--text-primary);
+}
+
+.profile-info p {
+    color: var(--text-secondary);
+}
+
+/* Profile stats grid */
+.profile-stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+/* Stat card styles */
+.stat-card {
+    background: var(--bg-tertiary);
+    padding: 1rem;
+    border-radius: 8px;
+    text-align: center;
+}
+
+.stat-card h4 {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    margin-bottom: 0.5rem;
+}
+
+.stat-card p {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--primary-color);
+    margin: 0;
+}
+
+/* Profile actions */
+.profile-actions {
+    display: flex;
+    gap: 1rem;
+    margin-top: 2rem;
+}
+
+/* View details button */
+.view-details-btn {
+    margin-top: 1rem;
+    width: 100%;
+}
+
+/* ============================================= */
+/* ============ DURATION INPUT STYLES ========= */
+/* ============================================= */
+
+/* Duration inputs container */
+.duration-inputs {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+/* Duration group styles */
+.duration-group {
+    flex: 1;
+}
+
+.duration-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+}
+
+.duration-group input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid var(--bg-tertiary);
+    border-radius: 8px;
+    background: var(--bg-secondary);
+    color: var(--text-primary);
+}
+
+@media (max-width: 480px) {
+    .duration-inputs {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+}
+
+/* ============================================= */
+/* ============ PROFILE SECTION STYLES ======== */
+/* ============================================= */
+
+/* Profile details */
+.profile-details {
+    margin-bottom: 2rem;
+}
+
+/* Detail item styles */
+.detail-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 1rem 0;
+    border-bottom: 1px solid var(--bg-tertiary);
+}
+
+.detail-label {
+    font-weight: 500;
+    color: var(--text-primary);
+}
+
+.detail-value {
+    color: var(--text-secondary);
+}
+
+/* Responsive profile section */
+@media (max-width: 768px) {
+    .profile-header {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .profile-actions {
+        flex-direction: column;
+    }
+}
+
+/* ============================================= */
+/* ============ CHANGE PASSWORD MODAL ========= */
+/* ============================================= */
+
+/* Change password modal */
+#change-password-modal .modal-content {
+    max-width: 500px;
+}
+
+/* Change password form */
+#change-password-form {
+    margin-top: 1.5rem;
+}
+
+#change-password-form .password-hint {
+    margin: -0.5rem 0 1rem;
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+}
+
+/* ============================================= */
+/* ============ PAYMENT MODAL STYLES ========== */
+/* ============================================= */
+
+/* Payment modal container */
+#payment-modal .modal-content {
+    max-width: 500px;
+}
+
+/* Payment fields section */
+.payment-fields {
+    margin: 1.5rem 0;
+    padding: 1rem;
+    background: var(--bg-tertiary);
+    border-radius: 8px;
+}
+
+/* Payment hint text */
+.payment-hint {
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+    margin-top: 0.5rem;
+}
+
+/* Card details grid */
+.card-details {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin: 1rem 0;
+}
+
+/* Card number input */
+#card-number {
+    letter-spacing: 1px;
+}
+
+/* Card expiry and CVV inputs */
+#card-expiry, #card-cvv {
+    text-align: center;
+}
+
+/* ============================================= */
+/* ============ CONTACT US STYLES ============= */
+/* ============================================= */
+
+.contact-intro {
+    font-size: 1.1rem;
+    margin-bottom: 1.5rem;
+    color: var(--text-secondary);
+}
+
+.contact-info {
+    margin-top: 2rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--bg-tertiary);
+    font-size: 1rem;
+    color: var(--text-secondary);
+}
+
+.contact-info h3 {
+    margin-bottom: 1rem;
+    color: var(--text-primary);
+}
+
+.contact-info p {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 0.5rem;
+}
+
+.contact-info a {
+    color: var(--primary-color);
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.contact-info a:hover {
+    text-decoration: underline;
+}
